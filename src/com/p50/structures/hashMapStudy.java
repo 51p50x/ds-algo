@@ -1,6 +1,7 @@
 package com.p50.structures;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /*
 * This class is just for study HashMaps
@@ -27,5 +28,31 @@ public class hashMapStudy {
             hashMap.put(nums[i],i);
         }
         return new int[]{};
+    }
+
+    // SINGLE NUMBER
+    /*
+    *  Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+    *  Example: Input: nums = [2,2,1] Output: 1
+    * */
+    public int singleNumber(int[] nums) {
+        Map<Integer, Integer> hashmap
+                = new HashMap<Integer, Integer>();
+        int noAns = 0;
+        int counter = 1;
+        for (int num : nums) {
+            if (hashmap.containsKey(num)) {
+                hashmap.put(num, counter + 1);
+            } else {
+                hashmap.put(num, counter);
+            }
+
+        }
+
+        for (Integer key:hashmap.keySet()){
+            if(hashmap.get(key)==1)
+                return (int)key;
+        }
+        return noAns;
     }
 }
